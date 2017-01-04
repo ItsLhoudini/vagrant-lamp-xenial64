@@ -48,7 +48,7 @@ then
 else
   touch /home/vagrant/.php7
   echo -e "\n----- Installing PHP 7.0... \n"
-  apt-get install -y php7.0-fpm php7.0-mysql php7.0-common php7.0-gd php7.0-json php7.0-cli php7.0-curl libapache2-mod-php7.0 php7.0-mbstring php-xml php-apcu
+  apt-get install -y php7.0-fpm php7.0-mysql php7.0-common php7.0-gd php7.0-json php7.0-cli php7.0-curl libapache2-mod-php7.0 php7.0-mbstring php-apcu
   a2enmod php7.0 rewrite deflate filter proxy_fcgi setenvif
   cp /nfs-www/_conf/_www.conf /etc/php/7.0/fpm/pool.d/www.conf
   chmod 0644 /etc/php/7.0/fpm/pool.d/www.conf
@@ -63,6 +63,7 @@ fi
 echo -e "\n----- Removing old domains... \n"
 shopt -s extglob
 rm /etc/apache2/sites-available/!(000-default.conf|default-ssl.conf)
+rm /etc/apache2/sites-enabled/!(000-default.conf|default-ssl.conf)
 shopt -u extglob
 echo -e "Done!\n"
 
